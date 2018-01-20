@@ -1,0 +1,380 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_ad2001201jbox_name": {
+            "defaultValue": "ad2001201jbox",
+            "type": "string"
+        },
+        "virtualNetworks_ad2001201vnet_name": {
+            "defaultValue": "ad2001201vnet",
+            "type": "string"
+        },
+        "publicIPAddresses_ad2001201pip_name": {
+            "defaultValue": "ad2001201pip",
+            "type": "string"
+        },
+        "storageAccounts_g3v3wzoc2u3z2jb_name": {
+            "defaultValue": "g3v3wzoc2u3z2jb",
+            "type": "string"
+        },
+        "virtualMachineScaleSets_ad2001201_name": {
+            "defaultValue": "ad2001201",
+            "type": "string"
+        },
+        "networkInterfaces_ad2001201jboxnic_name": {
+            "defaultValue": "ad2001201jboxnic",
+            "type": "string"
+        },
+        "autoscalesettings_autoscalesettings_name": {
+            "defaultValue": "autoscalesettings",
+            "type": "string"
+        },
+        "subnets_ad2001201subnet_name": {
+            "defaultValue": "ad2001201subnet",
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Compute/virtualMachines/ad2001201jbox'.",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_ad2001201jbox_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_A1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "14.04.4-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_ad2001201jbox_name'),'osdisk')]",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_g3v3wzoc2u3z2jb_name'), '.blob.core.windows.net', concat('/', parameters('virtualMachines_ad2001201jbox_name'),'vhd/', parameters('virtualMachines_ad2001201jbox_name'),'osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite",
+                        "diskSizeGB": 29
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ad2001201jbox_name')]",
+                    "adminUsername": "azuredemo",
+                    "adminPassword": "AzureDemo123",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad2001201jboxnic_name'))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('http', '://', parameters('storageAccounts_g3v3wzoc2u3z2jb_name'), '.blob.core.windows.net', '/')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_g3v3wzoc2u3z2jb_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_ad2001201jboxnic_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Compute/virtualMachineScaleSets/ad2001201'.",
+            "type": "Microsoft.Compute/virtualMachineScaleSets",
+            "sku": {
+                "name": "Standard_A0",
+                "tier": "Standard",
+                "capacity": 2
+            },
+            "name": "[parameters('virtualMachineScaleSets_ad2001201_name')]",
+            "apiVersion": "2017-03-30",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "singlePlacementGroup": true,
+                "upgradePolicy": {
+                    "mode": "Manual"
+                },
+                "virtualMachineProfile": {
+                    "osProfile": {
+                        "computerNamePrefix": "[parameters('virtualMachineScaleSets_ad2001201_name')]",
+                        "adminUsername": "azuredemo",
+                        "adminPassword": "AzureDemo123",
+                        "linuxConfiguration": {
+                            "disablePasswordAuthentication": false
+                        },
+                        "secrets": []
+                    },
+                    "storageProfile": {
+                        "osDisk": {
+                            "createOption": "FromImage",
+                            "caching": "None",
+                            "managedDisk": {
+                                "storageAccountType": "Standard_LRS"
+                            }
+                        },
+                        "imageReference": {
+                            "publisher": "Canonical",
+                            "offer": "UbuntuServer",
+                            "sku": "14.04.4-LTS",
+                            "version": "latest"
+                        }
+                    },
+                    "networkProfile": {
+                        "networkInterfaceConfigurations": [
+                            {
+                                "name": "[concat(parameters('virtualMachineScaleSets_ad2001201_name'),'nic')]",
+                                "properties": {
+                                    "primary": true,
+                                    "enableAcceleratedNetworking": false,
+                                    "dnsSettings": {
+                                        "dnsServers": []
+                                    },
+                                    "ipConfigurations": [
+                                        {
+                                            "name": "[concat(parameters('virtualMachineScaleSets_ad2001201_name'),'ipconfig')]",
+                                            "properties": {
+                                                "subnet": {
+                                                    "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ad2001201vnet_name'), parameters('subnets_ad2001201subnet_name'))]"
+                                                },
+                                                "privateIPAddressVersion": "IPv4"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "overprovision": true
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ad2001201vnet_name'), parameters('subnets_ad2001201subnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/microsoft.insights/autoscalesettings/autoscalesettings'.",
+            "type": "Microsoft.Insights/autoscalesettings",
+            "name": "[parameters('autoscalesettings_autoscalesettings_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "profiles": [
+                    {
+                        "name": "Auto created scale condition",
+                        "capacity": {
+                            "minimum": 1,
+                            "maximum": 3,
+                            "default": 1
+                        },
+                        "rules": [
+                            {
+                                "metricTrigger": {
+                                    "metricName": "Percentage CPU",
+                                    "metricNamespace": "",
+                                    "metricResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('virtualMachineScaleSets_ad2001201_name'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT10M",
+                                    "timeAggregation": "Average",
+                                    "operator": "GreaterThan",
+                                    "threshold": 60
+                                },
+                                "scaleAction": {
+                                    "direction": "Increase",
+                                    "type": "ChangeCount",
+                                    "value": 1,
+                                    "cooldown": "PT5M"
+                                }
+                            },
+                            {
+                                "metricTrigger": {
+                                    "metricName": "Percentage CPU",
+                                    "metricNamespace": "",
+                                    "metricResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('virtualMachineScaleSets_ad2001201_name'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT10M",
+                                    "timeAggregation": "Average",
+                                    "operator": "LessThan",
+                                    "threshold": 25
+                                },
+                                "scaleAction": {
+                                    "direction": "Decrease",
+                                    "type": "ChangeCount",
+                                    "value": 1,
+                                    "cooldown": "PT5M"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "enabled": true,
+                "name": "[parameters('autoscalesettings_autoscalesettings_name')]",
+                "targetResourceUri": "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('virtualMachineScaleSets_ad2001201_name'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('virtualMachineScaleSets_ad2001201_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/networkInterfaces/ad2001201jboxnic'.",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_ad2001201jboxnic_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "f734f4f4-b10b-47ee-bf88-b2f48f5d16d7",
+                "ipConfigurations": [
+                    {
+                        "name": "ad2001201jboxipconfig",
+                        "etag": "W/\"52e675b7-24df-410c-b50e-aa1c6de4be7b\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.0.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ad2001201pip_name'))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ad2001201vnet_name'), parameters('subnets_ad2001201subnet_name'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "xajlicwrkb1uvaoo3ova1pnive.ax.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-2D-F4-F3",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ad2001201jbox_name'))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ad2001201pip_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ad2001201vnet_name'), parameters('subnets_ad2001201subnet_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/publicIPAddresses/ad2001201pip'.",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_ad2001201pip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "27cf55d5-b9ef-4802-b8bf-7ff1b54540ac",
+                "ipAddress": "52.166.90.226",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "ad20012018",
+                    "fqdn": "ad20012018.westeurope.cloudapp.azure.com"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/virtualNetworks/ad2001201vnet'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_ad2001201vnet_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "0ab412b8-50d1-4a77-81ce-ebaa0dbda8ac",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('subnets_ad2001201subnet_name')]",
+                        "etag": "W/\"017e31f7-8d20-4f81-bb6a-a4ad31db4769\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Storage/storageAccounts/g3v3wzoc2u3z2jb'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_g3v3wzoc2u3z2jb_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/virtualNetworks/ad2001201vnet/subnets/ad2001201subnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_ad2001201vnet_name'), '/', parameters('subnets_ad2001201subnet_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "location": "westeurope",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ad2001201vnet_name'))]"
+            ]
+        }
+    ]
+}

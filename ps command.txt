@@ -1,0 +1,5 @@
+
+westeurope
+New-AzureRmResourceGroupDeployment -Name AzureDeployment -ResourceGroupName RG-20012018 -TemplateFile "D:\Google Drive\Work\AzureTemplates\rg-20012018-jbox-sset-settings\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\rg-20012018-jbox-sset-settings\parameters.json"
+
+New-AzureRmResourceGroupDeployment -Name AzureDeployment -ResourceGroupName RG-20012018 -TemplateUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/template.json -TemplateParameterUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/parameters.json
