@@ -19,26 +19,26 @@
             "type": "string"
         },
         "virtualMachineScaleSets_name": {
-            "defaultValue": "ad2001201",
+            "defaultValue": "",
             "type": "string"
         },
         "networkInterfaces_jboxnic_name": {
-            "defaultValue": "ad2001201jboxnic",
+            "defaultValue": "",
             "type": "string"
         },
         "autoscalesettings_name": {
-            "defaultValue": "autoscalesettings",
+            "defaultValue": "",
             "type": "string"
         },
         "subnets_subnet_name": {
-            "defaultValue": "ad2001201subnet",
+            "defaultValue": "",
             "type": "string"
         }
     },
     "variables": {},
     "resources": [
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Compute/virtualMachines/ad2001201jbox'.",
+            "comments": "",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('virtualMachines_jbox_name')]",
             "apiVersion": "2017-03-30",
@@ -96,7 +96,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Compute/virtualMachineScaleSets/ad2001201'.",
+            "comments": "",
             "type": "Microsoft.Compute/virtualMachineScaleSets",
             "sku": {
                 "name": "Standard_A0",
@@ -170,7 +170,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/microsoft.insights/autoscalesettings/autoscalesettings'.",
+            "comments": "",
             "type": "Microsoft.Insights/autoscalesettings",
             "name": "[parameters('autoscalesettings_name')]",
             "apiVersion": "2014-04-01",
@@ -237,7 +237,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/networkInterfaces/ad2001201jboxnic'.",
+            "comments": "",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[parameters('networkInterfaces_jboxnic_name')]",
             "apiVersion": "2017-06-01",
@@ -284,7 +284,7 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/publicIPAddresses/ad2001201pip'.",
+            "comments": "",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[parameters('publicIPAddresses_pip_name')]",
             "apiVersion": "2017-06-01",
@@ -305,7 +305,7 @@
             "dependsOn": []
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/virtualNetworks/ad2001201vnet'.",
+            "comments": "",
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetworks_vnet_name')]",
             "apiVersion": "2017-06-01",
@@ -334,7 +334,7 @@
             "dependsOn": []
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Storage/storageAccounts/g3v3wzoc2u3z2jb'.",
+            "comments": "",
             "type": "Microsoft.Storage/storageAccounts",
             "sku": {
                 "name": "Standard_LRS",
@@ -362,7 +362,7 @@
             "dependsOn": []
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/00000/resourceGroups/rg-20012018/providers/Microsoft.Network/virtualNetworks/ad2001201vnet/subnets/ad2001201subnet'.",
+            "comments": "",
             "type": "Microsoft.Network/virtualNetworks/subnets",
             "name": "[concat(parameters('virtualNetworks_vnet_name'), '/', parameters('subnets_subnet_name'))]",
             "apiVersion": "2017-06-01",
