@@ -2,29 +2,29 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "virtualMachines_ad2001201jbox_name": {
+        "virtualMachines_jbox_name": {
             "value": "vmjbox"
         },
-        "virtualNetworks_ad2001201vnet_name": {
-            "value": "vnet200118"
+        "virtualNetworks_vnet_name": {
+            "value": "vnet"
         },
-        "publicIPAddresses_ad2001201pip_name": {
-            "value": "pip200118"
+        "publicIPAddresses_pip_name": {
+            "value": "pip"
         },
         "storageAccounts_g3v3wzoc2u3z2jb_name": {
             "value": "g3v3wzoc2u3z2jb"
         },
-        "virtualMachineScaleSets_ad2001201_name": {
-            "value": "sset200118"
+        "virtualMachineScaleSets_name": {
+            "value": "sset"
         },
-        "networkInterfaces_ad2001201jboxnic_name": {
-            "value": "ni200118"
+        "networkInterfaces_jboxnic_name": {
+            "value": "ni"
         },
-        "autoscalesettings_autoscalesettings_name": {
+        "autoscalesettings_name": {
             "value": "ssetsettings"
         },
-        "subnets_ad2001201subnet_name": {
-            "value": "subnet200118"
+        "subnets_subnet_name": {
+            "value": "subnet1"
         }
     }
 }
