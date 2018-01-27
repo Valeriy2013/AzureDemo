@@ -1,0 +1,1 @@
+New-AzureRmResourceGroup -Name RG -Location "westeurope"

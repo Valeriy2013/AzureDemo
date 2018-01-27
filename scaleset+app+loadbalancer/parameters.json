@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "loadBalancers_vm_2018yglb_name": {
+            "value": "vm2018yglb"
+        },
+        "virtualNetworks_vm_2018ygvnet_name": {
+            "value": "vm2018ygvnet"
+        },
+        "publicIPAddresses_vm_2018ygpip_name": {
+            "value": "vm2018ygpip"
+        },
+        "virtualMachineScaleSets_vm_2018yg_name": {
+            "value": "vm2018yg"
+        },
+        "autoscalesettings_autoscalesettings_name": {
+            "value": "autoscalesettings"
+        },
+        "subnets_vm_2018ygsubnet_name": {
+            "value": "vm2018ygsubnet"
+        },
+        "loadBalancers_vm_2018yglb_id_0": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/frontendIPConfigurations/LoadBalancerFrontEnd"
+        },
+        "loadBalancers_vm_2018yglb_id_1": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/backendAddressPools/vm2018ygbepool"
+        },
+        "loadBalancers_vm_2018yglb_id_2": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/probes/tcpProbe"
+        },
+        "loadBalancers_vm_2018yglb_id_3": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/frontendIPConfigurations/LoadBalancerFrontEnd"
+        },
+        "loadBalancers_vm_2018yglb_id_4": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/frontendIPConfigurations/LoadBalancerFrontEnd"
+        },
+        "loadBalancers_vm_2018yglb_id_5": {
+            "value": "/subscriptions/54342f73-e696-4150-b662-d71d7e8714b9/resourceGroups/RG/providers/Microsoft.Network/loadBalancers/vm2018yglb/frontendIPConfigurations/LoadBalancerFrontEnd"
+        }
+    }
+}

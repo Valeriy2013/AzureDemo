@@ -1,0 +1,1 @@
+New-AzureRmResourceGroupDeployment -Name TestDeployApp -ResourceGroupName RG -TemplateFile "D:\Google Drive\Work\AzureTemplates\scaleset+app+loadbalancer\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\scaleset+app+loadbalancer\parameters.json"
