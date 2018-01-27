@@ -4,6 +4,6 @@ Select-AzureRmSubscription -SubscriptionName <yourSubscriptionName>
 
 New-AzureRmResourceGroup -Name RG -Location "westeurope"
 
-New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateFile "D:\Google Drive\Work\AzureTemplates\rg-20012018-jbox-sset-settings\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\rg-20012018-jbox-sset-settings\parameters.json"
+New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\jbox+sset\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\jbox+sset\parameters.json"
 
-New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/template.json -TemplateParameterUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/parameters.json
+New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/jbox+sset/template.json -TemplateParameterUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/jbox+sset/parameters.json
