@@ -7,3 +7,7 @@ New-AzureRmResourceGroup -Name RG -Location "westeurope"
 New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\jbox+sset\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\jbox+sset\parameters.json"
 
 New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/jbox+sset/template.json -TemplateParameterUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/jbox+sset/parameters.json
+
+New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\scaleset+app+loadbalancer\template.json" -TemplateParameterFile "D:\Google Drive\Work\AzureTemplates\AzureCourse_task1\scaleset+app+loadbalancer\parameters.json"
+
+New-AzureRmResourceGroupDeployment -Name TestDeploy -ResourceGroupName RG -TemplateUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/scaleset+app+loadbalancer/template.json -TemplateParameterUri https://raw.githubusercontent.com/Valeriy2013/AzureDemo/master/scaleset+app+loadbalancer/parameters.json
